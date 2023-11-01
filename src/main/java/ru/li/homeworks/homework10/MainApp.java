@@ -28,15 +28,15 @@ public class MainApp {
 
     private static void processSelection(Box box, int choice) {
         if (choice == 1) {
-            box.openBox();
+            box.open();
         } else if (choice == 2) {
-            box.closeBox();
+            box.close();
         } else if (choice == 3) {
             System.out.println("Что вы хотите положить?");
             String item = getParameterFromUser();
-            box.putItemInBox(item);
+            box.putItemIn(item);
         } else if (choice == 4) {
-            box.takeItemOutBox();
+            box.takeItemOut();
         } else if (choice == 5) {
             System.out.println("В какой цвет красим?");
             String color = getParameterFromUser();

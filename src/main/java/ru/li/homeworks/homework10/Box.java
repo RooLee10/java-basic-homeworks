@@ -1,12 +1,11 @@
 package ru.li.homeworks.homework10;
 
 public class Box {
-    private static int height;
-    private static int length;
-    private static int width;
+    private final int height;
+    private final int length;
+    private final int width;
     private String color;
     private String item;
-    private boolean isFull;
     private boolean isOpen;
 
     public void setColor(String color) {
@@ -22,36 +21,34 @@ public class Box {
         this.item = "";
     }
 
-    public void putItemInBox(String item) {
+    public void putItemIn(String item) {
         if (!isOpen) {
             System.out.println("Сначала нужно открыть коробку..");
             return;
         }
-        if (isFull) {
+        if (!this.item.isEmpty()) {
             System.out.println("Коробка уже полная, там лежит: " + this.item);
             return;
         }
         System.out.println("Вы положили предмет '" + item + "' в коробку");
-        this.isFull = true;
         this.item = item;
     }
 
-    public void takeItemOutBox() {
+    public void takeItemOut() {
         if (!isOpen) {
             System.out.println("Сначала нужно открыть коробку..");
             return;
         }
-        if (!isFull) {
+        if (item.isEmpty()) {
             System.out.println("В коробке и так ничего нет..");
             return;
         }
         System.out.println("Предмет '" + item + "' покинул коробку");
-        isFull = false;
         item = "";
     }
 
 
-    public void openBox() {
+    public void open() {
         if (isOpen) {
             System.out.println("Коробка уже открыта..");
             return;
@@ -60,7 +57,7 @@ public class Box {
         isOpen = true;
     }
 
-    public void closeBox() {
+    public void close() {
         if (!isOpen) {
             System.out.println("Коробка уже закрыта..");
             return;
@@ -74,7 +71,6 @@ public class Box {
         System.out.println("Цвет: " + color);
         System.out.println("Размеры: " + height + "x" + length + "x" + width);
         System.out.println("Открыта: " + isOpen);
-        System.out.println("Полная: " + isFull);
         System.out.println("Предмет: " + item);
     }
 }
