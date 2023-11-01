@@ -1,19 +1,14 @@
 package ru.li.homeworks.homework10;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class MainApp {
     public static void main(String[] args) {
-        User[] users = getUsers();
-        int currentYear = 2023;
-        for (User user : users) {
-            if (user.getCurrentAge(currentYear) > 40) {
-                user.printInfo();
-                System.out.println("-----------------------------------");
-            }
-        }
+        printUsers();
+        interactionWithBox();
+    }
 
+    private static void interactionWithBox() {
         printInstructionsForBox();
         Box box = new Box(10, 10, 10, "Белый");
         Scanner scanner = new Scanner(System.in);
@@ -26,7 +21,38 @@ public class MainApp {
             if (choice == 7) {
                 break;
             }
+            processSelection(box, choice);
+            System.out.println();
         }
+    }
+
+    private static void processSelection(Box box, int choice) {
+        if (choice == 1) {
+            box.openBox();
+        } else if (choice == 2) {
+            box.closeBox();
+        } else if (choice == 3) {
+            System.out.println("Что вы хотите положить?");
+            String item = getParameterFromUser();
+            box.putItemInBox(item);
+        } else if (choice == 4) {
+            box.takeItemOutBox();
+        } else if (choice == 5) {
+            System.out.println("В какой цвет красим?");
+            String color = getParameterFromUser();
+            box.setColor(color);
+        } else if (choice == 6) {
+            box.printInfo();
+        }
+    }
+
+    private static String getParameterFromUser() {
+        Scanner scanner = new Scanner(System.in);
+        String item;
+        do {
+            item = scanner.nextLine();
+        } while (item.isEmpty());
+        return item;
     }
 
     private static void printInstructionsForBox() {
@@ -38,6 +64,17 @@ public class MainApp {
         System.out.println("5. Перекрасить коробку");
         System.out.println("6. Информация о коробке");
         System.out.println("7. Прекратить взаимодействие с коробкой");
+    }
+
+    private static void printUsers() {
+        User[] users = getUsers();
+        int currentYear = 2023;
+        for (User user : users) {
+            if (user.getCurrentAge(currentYear) > 40) {
+                user.printInfo();
+                System.out.println("-----------------------------------");
+            }
+        }
     }
 
     private static User[] getUsers() {

@@ -19,6 +19,7 @@ public class Box {
         this.length = length;
         this.width = width;
         this.color = color;
+        this.item = "";
     }
 
     public void putItemInBox(String item) {
@@ -27,10 +28,11 @@ public class Box {
             return;
         }
         if (isFull) {
-            System.out.println("Коробка уже полная, там лежит: " + item);
+            System.out.println("Коробка уже полная, там лежит: " + this.item);
             return;
         }
         System.out.println("Вы положили предмет '" + item + "' в коробку");
+        this.isFull = true;
         this.item = item;
     }
 
@@ -47,6 +49,7 @@ public class Box {
         isFull = false;
         item = "";
     }
+
 
     public void openBox() {
         if (isOpen) {
@@ -70,5 +73,8 @@ public class Box {
         System.out.println("Коробка");
         System.out.println("Цвет: " + color);
         System.out.println("Размеры: " + height + "x" + length + "x" + width);
+        System.out.println("Открыта: " + isOpen);
+        System.out.println("Полная: " + isFull);
+        System.out.println("Предмет: " + item);
     }
 }
