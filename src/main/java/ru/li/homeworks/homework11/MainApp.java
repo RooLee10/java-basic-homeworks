@@ -2,15 +2,12 @@ package ru.li.homeworks.homework11;
 
 public class MainApp {
     public static void main(String[] args) {
-        Cat cat = new Cat("Barsik");
-        cat.info();
-        cat.run(55);
-        cat.swim(5);
-
-        Dog dog = new Dog("Laika");
-        dog.info();
-        dog.run(55);
-        dog.swim(10);
-        dog.info();
+        Animal[] animals = new Animal[]{new Cat("Garfield"), new Dog("Hachiko"), new Horse("Spirit")};
+        for (Animal animal : animals) {
+            System.out.println("--------------------------------------");
+            animal.run(40);
+            animal.swim(5);
+            animal.info();
+        }
     }
 }

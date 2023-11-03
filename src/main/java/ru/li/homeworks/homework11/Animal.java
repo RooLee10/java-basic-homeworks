@@ -1,6 +1,6 @@
 package ru.li.homeworks.homework11;
 
-public class Animal {
+public abstract class Animal {
     String name;
     int runningSpeed;
     int swimmingSpeed;
@@ -14,26 +14,32 @@ public class Animal {
     }
 
     public int run(int distance) {
-        int timeSpent = distance / runningSpeed;
-        int lostStamina = stamina - distance * runningStaminaCost;
-        if (lostStamina < 0) {
-            System.out.println(name + " пробежал " + stamina / runningStaminaCost + " из " + distance + " и устал");
+        int timeSpent;
+        int lostStamina = distance * runningStaminaCost;
+        if (lostStamina > stamina) {
+            int distanceCovered = stamina / runningStaminaCost;
+            timeSpent = distanceCovered / runningSpeed;
+            System.out.println(name + " пробежал " + distanceCovered + " из " + distance + " за " + timeSpent + " сек. и устал");
             stamina = 0;
             return -1;
         }
+        timeSpent = distance / runningSpeed;
         stamina -= lostStamina;
         System.out.println(name + " пробежал " + distance + " метров за " + timeSpent + " сек.");
         return timeSpent;
     }
 
     public int swim(int distance) {
-        int timeSpent = distance / swimmingSpeed;
-        int lostStamina = stamina - distance * swimmingStaminaCost;
-        if (lostStamina < 0) {
-            System.out.println(name + " проплыл " + stamina / swimmingStaminaCost + " из " + distance + " и устал");
+        int timeSpent;
+        int lostStamina = distance * swimmingStaminaCost;
+        if (lostStamina > stamina) {
+            int distanceCovered = stamina / swimmingStaminaCost;
+            timeSpent = distanceCovered / swimmingSpeed;
+            System.out.println(name + " проплыл " + distanceCovered + " из " + distance + " за " + timeSpent + " сек. и устал");
             stamina = 0;
             return -1;
         }
+        timeSpent = distance / swimmingSpeed;
         stamina -= lostStamina;
         System.out.println(name + " проплыл " + distance + " метров за " + timeSpent + " сек.");
         return timeSpent;

@@ -6,6 +6,6 @@ public class Horse extends Animal {
         this.runningSpeed = 20;
         this.swimmingSpeed = 1;
         this.swimmingStaminaCost = 4;
-        this.stamina = 120;
+        this.stamina = 150;
     }
 }
