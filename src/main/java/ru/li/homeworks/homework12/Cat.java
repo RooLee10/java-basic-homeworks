@@ -16,7 +16,6 @@ public class Cat {
             System.out.println(name + " поел.");
             return;
         }
-        satiety = false;
         System.out.println(name + " не смог поесть, не хватило еды.");
     }
 
