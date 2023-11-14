@@ -5,24 +5,28 @@ public class MainApp {
         Human human = new Human("Boris");
         Transport[] transports = {
                 new Car(),
+                new Horse(),
+                new Bicycle(),
+                new AllTerrainVehicle()
         };
 
         Terrain[] terrains = {
-                new Forest(),
-                new Swamp(),
-                new Flatland(),
+                Terrain.FLATLAND,
+                Terrain.FOREST,
+                Terrain.SWAMP,
         };
 
         for (Terrain terrain : terrains) {
-            for (Transport transport: transports) {
-                human.grabTransport(transport);
-                if (!human.move(10, terrain)) {
-                    human.getRidOfTransport();
+            for (Transport transport : transports) {
+                System.out.println("----------------------------------------");
+                if (human.getCurrentTransport() == null) {
+                    human.grabTransport(transport);
                 }
-//                human.move()
+                if (human.move(10, terrain)) {
+                    break;
+                }
+                human.getRidOfTransport();
             }
-
         }
-
     }
 }

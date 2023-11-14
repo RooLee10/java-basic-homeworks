@@ -1,13 +1,15 @@
 package ru.li.homeworks.homework13;
 
-public abstract class Transport {
-    protected String name;
-    protected int energy;
-    protected Terrain[] stopList;
+public interface Transport {
 
-    public abstract boolean move(int distance, Terrain terrain);
+    boolean move(int distance, Terrain terrain);
 
-    public boolean terrainInStopList(Terrain terrain) {
-        return false; //Arrays.contains(stopList, terrain);
+    default boolean terrainInStopList(Terrain terrain, Terrain[] stopList) {
+        for (Terrain t : stopList) {
+            if (t.equals(terrain)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

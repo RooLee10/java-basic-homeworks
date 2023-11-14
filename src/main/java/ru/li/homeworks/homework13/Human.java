@@ -4,6 +4,10 @@ public class Human {
     private final String name;
     private Transport currentTransport;
 
+    public Transport getCurrentTransport() {
+        return currentTransport;
+    }
+
     public Human(String name) {
         this.name = name;
     }

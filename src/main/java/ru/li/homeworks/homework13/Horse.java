@@ -2,17 +2,15 @@ package ru.li.homeworks.homework13;
 
 import java.util.Arrays;
 
-public class Car implements Transport {
-    private int fuel;
+public class Horse implements Transport {
     private Terrain[] stopList;
-    public Car() {
-        this.fuel = 100;
+    private int stamina;
+    public Horse() {
+        this.stamina = 100;
         this.stopList = new Terrain[] {
-                Terrain.FOREST,
-                Terrain.SWAMP,
+                Terrain.SWAMP
         };
     }
-
     @Override
     public boolean move(int distance, Terrain terrain) {
         if (terrainInStopList(terrain, stopList)) {
@@ -25,9 +23,9 @@ public class Car implements Transport {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "fuel=" + fuel +
-                ", stopList=" + Arrays.toString(stopList) +
+        return "Horse{" +
+                "stopList=" + Arrays.toString(stopList) +
+                ", stamina=" + stamina +
                 '}';
     }
 }
