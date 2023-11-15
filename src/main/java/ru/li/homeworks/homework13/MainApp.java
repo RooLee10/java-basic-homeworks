@@ -22,11 +22,13 @@ public class MainApp {
                 if (human.getCurrentTransport() == null) {
                     human.grabTransport(transport);
                 }
-                if (human.move(10, terrain)) {
+                if (human.move(90, terrain)) {
                     break;
                 }
                 human.getRidOfTransport();
             }
         }
+        System.out.println();
+        System.out.println(human);
     }
 }
