@@ -5,12 +5,19 @@ import java.util.Arrays;
 public class Car implements Transport {
     private int fuel;
     private final Terrain[] stopList;
+    private Human wheelman;
+
     public Car() {
         this.fuel = 100;
-        this.stopList = new Terrain[] {
+        this.stopList = new Terrain[]{
                 Terrain.FOREST,
                 Terrain.SWAMP,
         };
+    }
+
+    @Override
+    public void setWheelman(Human wheelman) {
+        this.wheelman = wheelman;
     }
 
     @Override
@@ -45,6 +52,6 @@ public class Car implements Transport {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + " (fuel=" + fuel +", stopList=" + Arrays.toString(stopList) + ")";
+        return getClass().getSimpleName() + " (fuel=" + fuel + ", stopList=" + Arrays.toString(stopList) + ")";
     }
 }

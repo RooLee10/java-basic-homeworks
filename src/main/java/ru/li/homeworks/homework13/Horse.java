@@ -5,12 +5,18 @@ import java.util.Arrays;
 public class Horse implements Transport {
     private final Terrain[] stopList;
     private int stamina;
+    private Human wheelman;
 
     public Horse() {
         this.stamina = 100;
         this.stopList = new Terrain[]{
                 Terrain.SWAMP
         };
+    }
+
+    @Override
+    public void setWheelman(Human wheelman) {
+        this.wheelman = wheelman;
     }
 
     @Override

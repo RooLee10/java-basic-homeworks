@@ -7,11 +7,12 @@ public class Bicycle implements Transport {
     private Human wheelman;
 
     public Bicycle() {
-        this.stopList = new Terrain[] {
+        this.stopList = new Terrain[]{
                 Terrain.SWAMP
         };
     }
 
+    @Override
     public void setWheelman(Human wheelman) {
         this.wheelman = wheelman;
     }
@@ -28,7 +29,7 @@ public class Bicycle implements Transport {
             return false;
         }
         System.out.println("Успешно преодолел местность " + terrain + " затратив " + cost + " в.");
-        wheelman.setStamina(wheelman.getStamina() - cost);
+        wheelman.indicateStaminaConsumption(cost);
         return true;
     }
 

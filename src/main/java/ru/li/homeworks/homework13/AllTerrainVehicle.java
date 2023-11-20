@@ -2,9 +2,15 @@ package ru.li.homeworks.homework13;
 
 public class AllTerrainVehicle implements Transport {
     private int fuel;
+    private Human wheelman;
 
     public AllTerrainVehicle() {
         this.fuel = 100;
+    }
+
+    @Override
+    public void setWheelman(Human wheelman) {
+        this.wheelman = wheelman;
     }
 
     @Override

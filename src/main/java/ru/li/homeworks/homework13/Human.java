@@ -13,10 +13,6 @@ public class Human {
         return stamina;
     }
 
-    public void setStamina(int stamina) {
-        this.stamina = stamina;
-    }
-
     public Human(String name) {
         this.name = name;
         this.stamina = 100;
@@ -36,6 +32,10 @@ public class Human {
         return true;
     }
 
+    public void indicateStaminaConsumption(int costStamina) {
+        this.stamina -= costStamina;
+    }
+
     private int calculateEnergyCost(int distance) {
         // 100 в/25 км
         return distance * 4;
@@ -47,9 +47,7 @@ public class Human {
             return;
         }
         this.currentTransport = transport;
-        if (transport instanceof Bicycle) {
-            ((Bicycle) transport).setWheelman(this); // для траты силы водителя
-        }
+        transport.setWheelman(this); // для траты силы водителя
         System.out.println(name + " завладел транспортом: " + transport);
     }
 
@@ -59,9 +57,7 @@ public class Human {
             return;
         }
         System.out.println(name + " избавился от транспорта: " + currentTransport);
-        if (currentTransport instanceof Bicycle) {
-            ((Bicycle) currentTransport).setWheelman(null); // удаляем водителя
-        }
+        currentTransport.setWheelman(null); // удаляем водителя
         this.currentTransport = null;
     }
 
