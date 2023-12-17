@@ -19,9 +19,10 @@ public class MainApp {
         double[] array = getNewArray();
         List<Integer> ranges = new ArrayList<>();
         int amountOfElements = array.length;
+        int step = amountOfElements / numberOfThreads;
         for (int i = 0; i < numberOfThreads; i++) {
             ranges.add(amountOfElements);
-            amountOfElements /= 2;
+            amountOfElements -= step;
         }
         ranges.add(0);
 
