@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class MainApp {
     private static File file;
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     public static void main(String[] args) {
 
@@ -33,12 +33,11 @@ public class MainApp {
 
                 String text;
                 while (true) {
-                    text = scanner.nextLine();
+                    text = SCANNER.nextLine();
                     if (text.equals("#close")) {
                         break;
                     }
                     bw.write(text + "\n");
-                    bw.flush();
                 }
 
                 file = file.getParentFile();
@@ -50,7 +49,7 @@ public class MainApp {
 
     private static String getNavigation() {
         System.out.print("Введите имя каталога или файла. Для перехода на уровень выше используйте '..': ");
-        return scanner.nextLine();
+        return SCANNER.nextLine();
     }
 
     private static void printTheFileOrDirectory() {
@@ -65,9 +64,7 @@ public class MainApp {
                 while ((line = reader.readLine()) != null) {
                     System.out.println(line);
                 }
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
