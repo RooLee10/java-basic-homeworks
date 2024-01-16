@@ -15,23 +15,6 @@ public class MainApp {
         countTheNumberOfOccurrences(selectedFile, selectedSequence);
     }
 
-    private static File requestFile() {
-        while (true) {
-            printResources();
-
-            String userInput = SCANNER.nextLine().trim();
-            if (userInput.isEmpty()) {
-                continue;
-            }
-            File selectedFile = new File(RESOURCES.getPath() + File.separator + userInput);
-            if (!selectedFile.exists()) {
-                System.out.println("Файл не найден");
-                continue;
-            }
-            return selectedFile;
-        }
-    }
-
     private static void countTheNumberOfOccurrences(File file, String sequence) {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             Map<String, Integer> result = new HashMap<>();
@@ -62,6 +45,23 @@ public class MainApp {
                 continue;
             }
             return sequence;
+        }
+    }
+
+    private static File requestFile() {
+        while (true) {
+            printResources();
+
+            String userInput = SCANNER.nextLine().trim();
+            if (userInput.isEmpty()) {
+                continue;
+            }
+            File selectedFile = new File(RESOURCES.getPath() + File.separator + userInput);
+            if (!selectedFile.exists()) {
+                System.out.println("Файл не найден");
+                continue;
+            }
+            return selectedFile;
         }
     }
 
