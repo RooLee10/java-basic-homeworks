@@ -62,11 +62,9 @@ public class MainApp {
     }
 
     private static void printResources() {
-        if (RESOURCES.isDirectory()) {
-            File[] list = RESOURCES.listFiles((dir, name) -> name.endsWith(".txt"));
-            for (File file : list) {
-                System.out.println(file.getName());
-            }
+        File[] list = RESOURCES.listFiles((dir, name) -> name.endsWith(".txt"));
+        for (File file : list) {
+            System.out.println(file.getName());
         }
     }
 }
