@@ -10,21 +10,25 @@ public class MainApp {
     private final static Scanner SCANNER = new Scanner(System.in);
 
     public static void main(String[] args) {
+        File selectedFile = requestFile();
+        String selectedSequence = requestSequence();
+        countTheNumberOfOccurrences(selectedFile, selectedSequence);
+    }
+
+    private static File requestFile() {
         while (true) {
-            System.out.println("---------------------------");
-            System.out.println("Выберите файл:");
             printResources();
 
-            String userInput = SCANNER.nextLine();
+            String userInput = SCANNER.nextLine().trim();
+            if (userInput.isEmpty()) {
+                continue;
+            }
             File selectedFile = new File(RESOURCES.getPath() + File.separator + userInput);
             if (!selectedFile.exists()) {
                 System.out.println("Файл не найден");
                 continue;
             }
-
-            String selectedSequence = requestSequence();
-
-            countTheNumberOfOccurrences(selectedFile, selectedSequence);
+            return selectedFile;
         }
     }
 
@@ -36,7 +40,7 @@ public class MainApp {
                 // Не стал обрабатывать строки (удалять точки, запятые и т.д.), так как нужно только показать основную идею
                 String[] words = line.split(" ");
                 for (String word : words) {
-                    result.put(word, result.getOrDefault(word, 1) + 1);
+                    result.put(word, result.getOrDefault(word, 0) + 1);
                 }
             }
             System.out.printf("Последовательность символов '%s' встречается %d раз\n", sequence, result.getOrDefault(sequence, 0));
@@ -62,6 +66,8 @@ public class MainApp {
     }
 
     private static void printResources() {
+        System.out.println("---------------------------");
+        System.out.println("Выберите файл:");
         File[] list = RESOURCES.listFiles((dir, name) -> name.endsWith(".txt"));
         for (File file : list) {
             System.out.println(file.getName());
