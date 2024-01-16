@@ -34,7 +34,7 @@ public class MainApp {
             String line;
             while ((line = reader.readLine()) != null) {
                 // Не стал обрабатывать строки (удалять точки, запятые и т.д.), так как нужно только показать основную идею
-                String[] words = line.toLowerCase().split(" ");
+                String[] words = line.split(" ");
                 for (String word : words) {
                     result.put(word, result.getOrDefault(word, 1) + 1);
                 }
@@ -57,7 +57,7 @@ public class MainApp {
                 System.out.println("Последовательность символов должна быть одним словом");
                 continue;
             }
-            return sequence.toLowerCase();
+            return sequence;
         }
     }
 
