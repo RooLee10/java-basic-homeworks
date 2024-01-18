@@ -19,7 +19,11 @@ public class Box<T extends Fruit> {
     }
 
     public int weight() {
-        return fruits.size() * 150; // среднее вес в граммах
+        int weight = 0;
+        for (T f : fruits) {
+            weight += f.getWeight();
+        }
+        return weight;
     }
 
 
@@ -30,6 +34,14 @@ public class Box<T extends Fruit> {
     }
 
     public void transfer(Box<? super T> anotherBox) {
+        if (this == anotherBox) {
+            System.out.println("Отказ. Попытка пересыпать в ту же коробку. Используйте другую коробку для пересыпания");
+            return;
+        }
+        if (anotherBox == null) {
+            System.out.println("Отказ. Попытка пересыпать в неинициализированную коробку.");
+            return;
+        }
         for (T fruit : fruits) {
             anotherBox.add(fruit);
         }

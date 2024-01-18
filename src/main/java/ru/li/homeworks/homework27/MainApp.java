@@ -37,5 +37,7 @@ public class MainApp {
         System.out.println("Коробка яблок 2: " + boxApple2.getFruits());
         System.out.println("Коробка апельсинов: " + boxOrange.getFruits());
         System.out.println("Коробка фруктов: " + boxFruit.getFruits());
+
+        System.out.println("Сравнение коробки яблок 2 с фруктовой. Коробки равны по весу: " + boxApple2.compare(boxFruit));
     }
 }
