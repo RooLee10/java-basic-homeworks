@@ -12,7 +12,7 @@ public class MultiThreading {
     public void printA() {
         synchronized (mon) {
             for (int i = 0; i < 5; i++) {
-                while (!(letter.isEmpty() | letter.equals("C"))) {
+                while (!(letter.isEmpty() || letter.equals("C"))) {
                     try {
                         mon.wait();
                     } catch (InterruptedException e) {
