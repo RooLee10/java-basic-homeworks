@@ -1,9 +1,8 @@
 package ru.li.homeworks.homework28;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class MainApp {
     private final static File RESOURCES = new File("src/main/resources");
@@ -17,16 +16,16 @@ public class MainApp {
 
     private static void countTheNumberOfOccurrences(File file, String sequence) {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            Map<String, Integer> result = new HashMap<>();
+            int count = 0;
             String line;
             while ((line = reader.readLine()) != null) {
-                // Не стал обрабатывать строки (удалять точки, запятые и т.д.), так как нужно только показать основную идею
-                String[] words = line.split(" ");
-                for (String word : words) {
-                    result.put(word, result.getOrDefault(word, 0) + 1);
+                StringTokenizer st = new StringTokenizer(line, " ,.!?");
+                while (st.hasMoreTokens()) {
+                    String word = st.nextToken();
+                    count += (word.length() - word.replaceAll(sequence, "").length()) / sequence.length();
                 }
             }
-            System.out.printf("Последовательность символов '%s' встречается %d раз\n", sequence, result.getOrDefault(sequence, 0));
+            System.out.printf("Последовательность символов '%s' встречается %d раз(а)\n", sequence, count);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
