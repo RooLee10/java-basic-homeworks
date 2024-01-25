@@ -1,29 +1,17 @@
 package ru.li.homeworks.homework30;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class MyClass {
     public int[] getArrayFromLastOne(int[] list) {
-        // Манипуляции с ArrayList из-за того, что нет перегруженного метода assertArrayEquals для List<Integer>
-        // только массивы с примитивами принимает
-        List<Integer> resultList = new ArrayList<>();
-        List<Integer> searchList = new ArrayList<>();
-        for (int n : list) {
-            searchList.add(n);
-        }
+        List<Integer> searchList = Arrays.stream(list).boxed().collect(Collectors.toList());
         int index = searchList.lastIndexOf(1);
         if (index < 0) {
             throw new RuntimeException("В массиве чисел нет '1'");
         }
-        for (int i = index + 1; i < searchList.size(); i++) {
-            resultList.add(searchList.get(i));
-        }
-        int[] result = new int[resultList.size()];
-        for (int i = 0; i < resultList.size(); i++) {
-            result[i] = resultList.get(i);
-        }
-        return result;
+        List<Integer> resultList = searchList.subList(index + 1, searchList.size());
+        return resultList.stream().mapToInt(Integer::intValue).toArray();
     }
 
     public boolean arrayContainsOnlyOneAndTwo(List<Integer> list) {

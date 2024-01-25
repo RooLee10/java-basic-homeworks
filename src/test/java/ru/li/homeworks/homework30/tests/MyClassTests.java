@@ -26,7 +26,6 @@ public class MyClassTests {
 
     @Test
     public void testArrayContainsOnlyOneAndTwo() {
-        // Не удалось попробовать через "@CsvSource", "@ParameterizedTest" так как не дает выбрать эти аннотации
         Assertions.assertAll(
                 () -> Assertions.assertTrue(myClass.arrayContainsOnlyOneAndTwo(Arrays.asList(1, 2))),
                 () -> Assertions.assertFalse(myClass.arrayContainsOnlyOneAndTwo(Arrays.asList(1, 1))),
